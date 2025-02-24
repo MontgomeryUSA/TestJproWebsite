@@ -1,5 +1,6 @@
 package one.jpro.hellojpro;
 
+import com.jpro.webapi.JProApplication;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
  *
  * @author Florian Kirmaier
  */
+
 public class HelloJPro extends Application {
 
     @Override
@@ -20,6 +22,10 @@ public class HelloJPro extends Application {
         label.setFont(new Font(50));
         label.setAlignment(Pos.CENTER);
         stage.setScene(new Scene(label));
+        int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
+        this.getWebAPI().getWebServer().start(port);
+
+        stage.setTitle("Hello JPro on Render!");
         stage.show();
     }
 
